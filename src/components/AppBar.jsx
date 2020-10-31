@@ -1,17 +1,17 @@
 import React from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback, Text } from 'react-native';
+import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import Constants from 'expo-constants';
 import { Link } from "react-router-native";
 
-
-
+ 
 const styles = StyleSheet.create({
     container: {
         height: 50,
         paddingTop: Constants.statusBarHeight,
-        backgroundColor: 'black',
+        backgroundColor: 'black', 
+    },
+    scrollView: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
     },
     tab: {
         color: 'white',
@@ -27,7 +27,9 @@ const Tab = ({ title, to }) => <Link to={to}>
 
 
 const AppBar = ({ tabs }) => <View style={styles.container}>
-    {tabs.map((props, i) => <Tab  {...props} key={i} />)}
+    <ScrollView horizontal style={styles.scrollView}>
+        {tabs.map((props, i) => <Tab  {...props} key={i} />)}
+    </ScrollView>
 </View>;
 
 export default AppBar;
