@@ -1,10 +1,45 @@
 import React from 'react';
-import { FlatList, View, StyleSheet, Text } from 'react-native';
+import { FlatList, View, StyleSheet, Image } from 'react-native';
+import theme from '../theme';
+import Text from './Text'
 
 const styles = StyleSheet.create({
     separator: {
         height: 10,
     },
+    item: {
+        backgroundColor: 'white',
+    },
+    itemTop: {
+        flexDirection: 'row',
+    },
+    avatarContainer: {
+        flexGrow: 0,
+        padding: 10,
+    },
+    avatar: {
+        width: 40,
+        height: 40,
+    },
+    itemBody: {
+        padding: 5,
+        flexGrow: 4,
+    },
+    itemBodyText: {
+        marginBottom: 2,
+        width: '90%'
+    }, 
+    itemRating: {
+        justifyContent: 'center',
+    },
+    itemRatingText: {
+        textAlign: 'center',
+        margin: 1,
+    },
+    itemBottom: {
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    }, 
 });
 
 const repositories = [
@@ -56,28 +91,41 @@ const repositories = [
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryItem = ({ item }) => {
-    return (
-        <View> 
-            <Text>Full name: {item.fullName}</Text>
-            <Text>Description: {item.description}</Text>
-            <Text>Language: {item.language}</Text>
-            <Text>Forks: {item.forksCount}</Text>
-            <Text>Stars: {item.stargazersCount}</Text>
-            <Text>Rating: {item.ratingAverage}</Text>
-            <Text>Reviews: {item.reviewCount}</Text> 
+const ItemRating = ({ title, value }) =>
+    <View style={styles.itemRating}>
+        <Text fontWeight='bold' style={styles.itemRatingText} >{value < 1000 ? value : (value / 1000).toFixed(1) + 'k'}</Text>
+        <Text style={styles.itemRatingText}>{title}</Text>
+    </View>
+
+const RepositoryListItem = ({ item }) => <View style={styles.item}>
+    <View style={styles.itemTop}>
+        <View style={styles.avatarContainer}>
+            <Image
+                style={styles.avatar}
+                source={{ uri: item.ownerAvatarUrl }}
+            />
         </View>
-    );
-};
+        <View style={styles.itemBody}>
+            <Text fontWeight="bold" style={styles.itemBodyText}>{item.fullName}</Text>
+            <Text color="textSecondary" style={styles.itemBodyText}>{item.description}</Text> 
+            <Text tag style={styles.itemBodyText}>{item.language}</Text> 
+        </View>
+    </View>
+    <View style={styles.itemBottom}>
+        <ItemRating title="Stars" value={item.stargazersCount} />
+        <ItemRating title="Forks" value={item.forksCount} />
+        <ItemRating title="Reviews" value={item.reviewCount} />
+        <ItemRating title="Rating" value={item.ratingAverage} />
+    </View>
+</View>
 
 const RepositoryList = () => {
     return (
         <FlatList
             data={repositories}
             ItemSeparatorComponent={ItemSeparator}
-            renderItem={({item}) => <RepositoryItem item={item}/>}
+            renderItem={({ item }) => <RepositoryListItem item={item} />}
             keyExtractor={item => item.id}
-        // other props;
         />
     );
 };
