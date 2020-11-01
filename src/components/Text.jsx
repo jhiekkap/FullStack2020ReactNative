@@ -1,7 +1,23 @@
 import React from 'react';
-import { Text as NativeText, StyleSheet } from 'react-native';
-
+import { Text as NativeText, StyleSheet } from 'react-native'; 
 import theme from '../theme';
+
+ 
+const Text = ({ color, fontSize, fontWeight, tag, style, ...props }) => {
+  const textStyle = [
+    styles.text,
+    color === 'textSecondary' && styles.colorTextSecondary,
+    color === 'primary' && styles.colorPrimary,
+    fontSize === 'subheading' && styles.fontSizeSubheading,
+    fontWeight === 'bold' && styles.fontWeightBold,
+    tag && styles.tag,
+    style,
+  ];
+
+  return <NativeText style={textStyle} {...props} />;
+};
+
+export default Text;
 
 const styles = StyleSheet.create({
   text: {
@@ -30,19 +46,3 @@ const styles = StyleSheet.create({
     maxWidth: 100,
   }
 });
-
-const Text = ({ color, fontSize, fontWeight, tag, style, ...props }) => {
-  const textStyle = [
-    styles.text,
-    color === 'textSecondary' && styles.colorTextSecondary,
-    color === 'primary' && styles.colorPrimary,
-    fontSize === 'subheading' && styles.fontSizeSubheading,
-    fontWeight === 'bold' && styles.fontWeightBold,
-    tag && styles.tag,
-    style,
-  ];
-
-  return <NativeText style={textStyle} {...props} />;
-};
-
-export default Text;

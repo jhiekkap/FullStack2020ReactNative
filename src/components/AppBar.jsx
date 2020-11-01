@@ -3,18 +3,18 @@ import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import Constants from 'expo-constants';
 import { Link } from "react-router-native";
 
- 
 const styles = StyleSheet.create({
     container: {
         height: 50,
         paddingTop: Constants.statusBarHeight,
-        backgroundColor: 'black', 
+        backgroundColor: 'black',
     },
     scrollView: {
         flexDirection: 'row',
     },
     tab: {
         color: 'white',
+        marginLeft: 10,
         paddingBottom: 30,
         paddingLeft: 10
     }
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
 const Tab = ({ title, to }) => <Link to={to}>
     <Text style={styles.tab}>{title}</Text>
 </Link>;
-
 
 
 const AppBar = ({ tabs }) => <View style={styles.container}>

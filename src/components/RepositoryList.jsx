@@ -1,46 +1,7 @@
 import React from 'react';
 import { FlatList, View, StyleSheet, Image } from 'react-native';
-import theme from '../theme';
-import Text from './Text'
+import Text from './Text';
 
-const styles = StyleSheet.create({
-    separator: {
-        height: 10,
-    },
-    item: {
-        backgroundColor: 'white',
-    },
-    itemTop: {
-        flexDirection: 'row',
-    },
-    avatarContainer: {
-        flexGrow: 0,
-        padding: 10,
-    },
-    avatar: {
-        width: 40,
-        height: 40,
-    },
-    itemBody: {
-        padding: 5,
-        flexGrow: 4,
-    },
-    itemBodyText: {
-        marginBottom: 2,
-        width: '90%'
-    }, 
-    itemRating: {
-        justifyContent: 'center',
-    },
-    itemRatingText: {
-        textAlign: 'center',
-        margin: 1,
-    },
-    itemBottom: {
-        flexDirection: 'row',
-        justifyContent: 'space-around'
-    }, 
-});
 
 const repositories = [
     {
@@ -95,7 +56,7 @@ const ItemRating = ({ title, value }) =>
     <View style={styles.itemRating}>
         <Text fontWeight='bold' style={styles.itemRatingText} >{value < 1000 ? value : (value / 1000).toFixed(1) + 'k'}</Text>
         <Text style={styles.itemRatingText}>{title}</Text>
-    </View>
+    </View>;
 
 const RepositoryListItem = ({ item }) => <View style={styles.item}>
     <View style={styles.itemTop}>
@@ -107,8 +68,8 @@ const RepositoryListItem = ({ item }) => <View style={styles.item}>
         </View>
         <View style={styles.itemBody}>
             <Text fontWeight="bold" style={styles.itemBodyText}>{item.fullName}</Text>
-            <Text color="textSecondary" style={styles.itemBodyText}>{item.description}</Text> 
-            <Text tag style={styles.itemBodyText}>{item.language}</Text> 
+            <Text color="textSecondary" style={styles.itemBodyText}>{item.description}</Text>
+            <Text tag style={styles.itemBodyText}>{item.language}</Text>
         </View>
     </View>
     <View style={styles.itemBottom}>
@@ -117,17 +78,52 @@ const RepositoryListItem = ({ item }) => <View style={styles.item}>
         <ItemRating title="Reviews" value={item.reviewCount} />
         <ItemRating title="Rating" value={item.ratingAverage} />
     </View>
-</View>
+</View>;
 
-const RepositoryList = () => {
-    return (
-        <FlatList
-            data={repositories}
-            ItemSeparatorComponent={ItemSeparator}
-            renderItem={({ item }) => <RepositoryListItem item={item} />}
-            keyExtractor={item => item.id}
-        />
-    );
-};
+const RepositoryList = () => <FlatList
+    data={repositories}
+    ItemSeparatorComponent={ItemSeparator}
+    renderItem={({ item }) => <RepositoryListItem item={item} />}
+    keyExtractor={item => item.id}
+/>;
 
 export default RepositoryList;
+
+const styles = StyleSheet.create({
+    separator: {
+        height: 10,
+    },
+    item: {
+        backgroundColor: 'white',
+    },
+    itemTop: {
+        flexDirection: 'row',
+    },
+    avatarContainer: {
+        flexGrow: 0,
+        padding: 10,
+    },
+    avatar: {
+        width: 40,
+        height: 40,
+    },
+    itemBody: {
+        padding: 5,
+        flexGrow: 4,
+    },
+    itemBodyText: {
+        marginBottom: 2,
+        width: '90%'
+    },
+    itemRating: {
+        justifyContent: 'center',
+    },
+    itemRatingText: {
+        textAlign: 'center',
+        margin: 1,
+    },
+    itemBottom: {
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    },
+});

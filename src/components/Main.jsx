@@ -21,25 +21,20 @@ const tabs = [
   {
     title: 'Sign In',
     to: '/SignIn'
-  }, 
+  },
 ];
 
-const Main = () => {
-
-  return (
-    <View style={styles.container}>
-      <Appbar tabs={tabs} />
-      <Switch>
-        <Route path="/" exact>
-          <RepositoryList />
-        </Route>
-        <Route path="/SignIn" exact>
-          <SignIn />
-        </Route>
-        <Redirect to="/" />
-      </Switch>
-    </View>
-  );
-};
+const Main = () => <View style={styles.container}>
+  <Appbar tabs={tabs} />
+  <Switch>
+    <Route path="/" exact>
+      <RepositoryList />
+    </Route>
+    <Route path="/SignIn" exact>
+      <SignIn />
+    </Route>
+    <Redirect to="/" />
+  </Switch>
+</View>;
 
 export default Main;
