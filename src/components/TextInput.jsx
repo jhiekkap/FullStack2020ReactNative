@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
   },
   error: {
-    borderColor: 'red',
+    borderColor: theme.colors.error,
   },
 });
