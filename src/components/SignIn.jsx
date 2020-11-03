@@ -4,35 +4,54 @@ import SubmitButton from './SubmitButton';
 import FormikTextInput from './FormikTextInput';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import useSignIn from './../hooks/useSignIn';
 
 const initialValues = {
-  userName: '',
-  passWord: '',
+  username: '',
+  password: '',
 };
 
 const validationSchema = yup.object().shape({
-  userName: yup
+  username: yup
     .string()
     .required('Username is required'),
-  passWord: yup
+  password: yup
     .string()
     .required('Password is required'),
 });
 
 const SigniInForm = ({ onSubmit }) => <View style={styles.formContainer}>
-  <FormikTextInput name="userName" placeholder="Username" />
-  <FormikTextInput secureTextEntry name="passWord" placeholder="Password" />
+  <FormikTextInput name="username" placeholder="Username" />
+  <FormikTextInput secureTextEntry name="password" placeholder="Password" />
   <SubmitButton text='Sign in' onSubmit={onSubmit} />
 </View>;
 
-const onSubmit = (values) => console.log('VALUES', values);
 
-const SignIn = () => <Formik
-  initialValues={initialValues}
-  validationSchema={validationSchema}
-  onSubmit={onSubmit}>
-  {({ handleSubmit }) => <SigniInForm onSubmit={handleSubmit} />}
-</Formik>;
+const SignIn = () => {
+
+  const [signIn] = useSignIn();
+
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+    console.log('VALUES', values);
+
+    try {
+      const { data } = await signIn({ username, password });
+      console.log('RESPONSE: ', data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}>
+      {({ handleSubmit }) => <SigniInForm onSubmit={handleSubmit} />}
+    </Formik>
+  );
+};
 
 export default SignIn;
 
