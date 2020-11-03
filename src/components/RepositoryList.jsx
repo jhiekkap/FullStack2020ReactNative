@@ -37,11 +37,11 @@ const RepositoryListItem = ({ item }) => <View style={styles.item}>
 
 const RepositoryList = () => {
 
-    const { repositories } = useRepositories();
+    const { data } = useRepositories();
 
     // Get the nodes from the edges array
-    const repositoryNodes = repositories
-        ? repositories.edges.map(edge => edge.node)
+    const repositoryNodes = (data && data.repositories)
+        ? data.repositories.edges.map(edge => edge.node)
         : [];
 
 
