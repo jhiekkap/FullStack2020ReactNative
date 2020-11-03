@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text as NativeText, StyleSheet } from 'react-native'; 
+import { Text as NativeText, StyleSheet } from 'react-native';
 import theme from '../theme';
 
- 
+
 const Text = ({ color, fontSize, fontWeight, tag, style, ...props }) => {
   const textStyle = [
     styles.text,
@@ -41,8 +41,10 @@ const styles = StyleSheet.create({
   tag: {
     backgroundColor: theme.colors.primary,
     borderRadius: 10,
-    padding: 3,
+    paddingVertical: 3,
+    paddingHorizontal: 6,
     color: 'white',
-    maxWidth: 100,
+    flexGrow: 0,
+    maxWidth: 150,
   }
 });
