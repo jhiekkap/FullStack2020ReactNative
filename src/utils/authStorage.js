@@ -14,6 +14,8 @@ class AuthStorage {
   async setAccessToken(accessToken) {
     // Add the access token to the storage
     await AsyncStorage.setItem(`${this.namespace}:accessToken`, JSON.stringify(accessToken));
+    //const token = await this.getAccessToken();
+    //console.log('UUSI TOKEN', token);
 
   }
   async removeAccessToken() {

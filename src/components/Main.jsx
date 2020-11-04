@@ -3,7 +3,27 @@ import { StyleSheet, View } from 'react-native';
 import { Route, Switch, Redirect } from 'react-router-native';
 import RepositoryList from './RepositoryList';
 import SignIn from './SignIn';
+import SignOut from './SignOut';
 import Appbar from './AppBar';
+
+
+const Main = () => <View style={styles.container}>
+  <Appbar />
+  <Switch>
+    <Route path="/" exact>
+      <RepositoryList />
+    </Route>
+    <Route path="/SignIn" exact>
+      <SignIn />
+    </Route>
+    <Route path="/SignOut" exact>
+      <SignOut />
+    </Route>
+    <Redirect to="/" />
+  </Switch>
+</View>;
+
+export default Main;
 
 const styles = StyleSheet.create({
   container: {
@@ -12,29 +32,3 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
 });
-
-const tabs = [
-  {
-    title: 'Repositories',
-    to: '/',
-  },
-  {
-    title: 'Sign In',
-    to: '/SignIn'
-  },
-];
-
-const Main = () => <View style={styles.container}>
-  <Appbar tabs={tabs} />
-  <Switch>
-    <Route path="/" exact>
-      <RepositoryList />
-    </Route>
-    <Route path="/SignIn" exact>
-      <SignIn />
-    </Route>
-    <Redirect to="/" />
-  </Switch>
-</View>;
-
-export default Main;
