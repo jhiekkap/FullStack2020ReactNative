@@ -49,7 +49,7 @@ describe('RepositoryList', () => {
             };
             const { debug, getAllByTestId } = render(<RepositoryListContainer repositories={repositories} />);
 
-            debug();
+            //debug();
 
             expect(getAllByTestId('fullName')[0]).toHaveTextContent('jaredpalmer/formik');
             expect(getAllByTestId('fullName')[1]).toHaveTextContent('async-library/react-async');
@@ -68,3 +68,5 @@ describe('RepositoryList', () => {
         });
     });
 });
+
+
