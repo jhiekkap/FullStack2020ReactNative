@@ -29,3 +29,30 @@ export const AUTHORIZED_USER = gql`
       }
     }  
 `;
+
+
+export const GET_REPOSITORY = gql`
+query GetRepository($id: ID!) {
+  repository(id: $id) {
+    id
+    fullName
+    url
+  }
+}
+`;
+
+/* {
+  repository(id: "jaredpalmer.formik") {
+    id
+    fullName
+    url
+  }
+} */
+
+/* query GetRepository($id: String!) {
+  repository(id: $id) {
+    id
+    fullName
+    url
+  }
+} */

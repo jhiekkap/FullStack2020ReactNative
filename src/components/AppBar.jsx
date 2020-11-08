@@ -52,16 +52,16 @@ export default AppBar;
 const styles = StyleSheet.create({
     container: {
         height: 50,
-        paddingTop: Constants.statusBarHeight,
-        backgroundColor: 'black',
+        paddingTop:  Constants.statusBarHeight,
+        backgroundColor: 'black', 
     },
     scrollView: {
         flexDirection: 'row',
     },
-    tab: {
+    tab: { 
         color: 'white',
         marginLeft: 10,
-        paddingBottom: 30,
+        paddingBottom: 10,
         paddingLeft: 10
     }
 });

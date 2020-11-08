@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import { RepositoryListContainer, ratingToString } from '../../components/RepositoryList';
+import { RepositoryListContainer } from '../../components/RepositoryList';
+import { ratingToString } from '../../components/RepositoryList/RepositoryListItem';
+
 
 describe('RepositoryList', () => {
     describe('RepositoryListContainer', () => {

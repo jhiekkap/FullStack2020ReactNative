@@ -5,6 +5,7 @@ import RepositoryList from './RepositoryList';
 import SignIn from './SignIn';
 import SignOut from './SignOut';
 import Appbar from './AppBar';
+import RepositoryView from './RepositoryView';
 
 
 const Main = () => <View style={styles.container}>
@@ -18,6 +19,9 @@ const Main = () => <View style={styles.container}>
     </Route>
     <Route path="/SignOut" exact>
       <SignOut />
+    </Route>
+    <Route path="/Repositories/:id" exact>
+      <RepositoryView />
     </Route>
     <Redirect to="/" />
   </Switch>
