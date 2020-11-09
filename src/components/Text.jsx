@@ -12,8 +12,7 @@ const Text = ({ color, fontSize, fontWeight, tag, style, ...props }) => {
     fontWeight === 'bold' && styles.fontWeightBold,
     tag && styles.tag,
     style,
-  ];
-
+  ]; 
   return <NativeText style={textStyle} {...props} />;
 };
 
@@ -40,9 +39,9 @@ const styles = StyleSheet.create({
   },
   tag: {
     backgroundColor: theme.colors.primary,
-    borderRadius: 10,
+    borderRadius: 5,
     paddingVertical: 3,
-    paddingHorizontal: 6,
+    paddingHorizontal: 5,
     color: 'white',
     flexGrow: 0,
     maxWidth: 150,

@@ -25,7 +25,7 @@ const RepositoryListItem = ({ item }) => {
                     <Text testID="fullName" fontWeight="bold" style={styles.itemBodyText}>{item.fullName}</Text>
                     <Text testID="description" color="textSecondary" style={styles.itemBodyText}>{item.description}</Text>
                     <View testID="language" style={styles.languageContainer}>
-                        <Text tag style={styles.itemBodyText}>{item.language}</Text>
+                        <Text tag style={styles.languageText}>{item.language}</Text>
                     </View>
                 </View>
             </View>
@@ -58,6 +58,10 @@ const styles = StyleSheet.create({
     },
     languageContainer: {
         flexDirection: 'row',
+        marginTop: 1,
+    },
+    languageText: {
+        width: 'auto',
     },
     itemBody: {
         padding: 5,
@@ -76,6 +80,7 @@ const styles = StyleSheet.create({
     },
     itemBottom: {
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        marginVertical: 2.5,
     },
 });
