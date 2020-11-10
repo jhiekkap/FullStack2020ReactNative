@@ -8,7 +8,7 @@ import { useParams } from "react-router-native";
 import useRepository from './../hooks/useRepository';
 import * as Linking from 'expo-linking';
 import theme from '../theme';
-import { format } from 'date-fns';
+import { format } from 'date-fns'; 
 
 
 /* const mockItem = {
@@ -70,15 +70,13 @@ const RepositoryView = () => {
         return <View><Text>Error...</Text></View>
     }
     return (
-        <View>
-            <FlatList
-                data={reviewNodes}
-                renderItem={({ item }) => <ReviewItem review={item} />}
-                keyExtractor={({ id }) => id}
-                ListHeaderComponent={() => <RepositoryInfo item={repository} handleShowGithub={handleShowGithub} />}
-                ItemSeparatorComponent={ItemSeparator}
-            />
-        </View>
+        <FlatList
+            data={reviewNodes}
+            renderItem={({ item }) => <ReviewItem review={item} />}
+            keyExtractor={({ id }) => id}
+            ListHeaderComponent={() => <RepositoryInfo item={repository} handleShowGithub={handleShowGithub} />}
+            ItemSeparatorComponent={ItemSeparator}
+        />
     );
 }
 
