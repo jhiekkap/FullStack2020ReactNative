@@ -30,12 +30,18 @@ const AppBar = () => {
         {
             title: 'Repositories',
             to: '/',
-        },
-        {
-            title: authorizedUser ? 'Sign Out' : 'Sign In',
-            to: authorizedUser ? '/SignOut' : '/SignIn'
-        },
-    ];
+        }];
+    if (authorizedUser) {
+        tabs.push({
+            title: 'Create a review',
+            to: '/CreateReview'
+        });
+    }
+    tabs.push({
+        title: authorizedUser ? 'Sign Out' : 'Sign In',
+        to: authorizedUser ? '/SignOut' : '/SignIn'
+    });
+
 
     return (
         <View style={styles.container}>
@@ -51,14 +57,14 @@ export default AppBar;
 
 const styles = StyleSheet.create({
     container: {
-        height: 50,
-        paddingTop:  Constants.statusBarHeight,
+        height: 70,
+        paddingTop: 35,//Constants.statusBarHeight,
         backgroundColor: 'black', 
     },
     scrollView: {
-        flexDirection: 'row',
+        flexDirection: 'row', 
     },
-    tab: { 
+    tab: {
         color: 'white',
         marginLeft: 10,
         paddingBottom: 10,

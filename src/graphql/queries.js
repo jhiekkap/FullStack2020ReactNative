@@ -30,31 +30,27 @@ export const AUTHORIZED_USER = gql`
     }  
 `;
 
-
-/* export const GET_REPOSITORY = gql`
-query GetRepository($id: ID!) {
-  repository(id: $id) {
-    id
-    fullName
-    url
-  }
-}
-`; */
-
-
+  
 export const GET_REPOSITORY = gql`
-query GetReviews($id: ID!) { 
+query GetRepository($id: ID!) { 
   repository(id: $id) {
     id
     fullName
+    description 
+    language 
+    forksCount
+    stargazersCount 
+    ratingAverage 
+    reviewCount 
+    ownerAvatarUrl
     url
     reviews {
       edges {
         node {
-          id
-          text
-          rating
+          id  
           createdAt
+          rating
+          text
           user {
             id
             username

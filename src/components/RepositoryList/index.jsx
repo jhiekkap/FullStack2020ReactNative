@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList, View, StyleSheet, TouchableOpacity } from 'react-native';
+import Text from '../Text';
 import useRepositories from '../../hooks/useRepositories';
 import RepositoryListItem from './RepositoryListItem';
 import { useHistory } from "react-router-native";
@@ -38,7 +39,14 @@ const RepositoryListContainer = ({ repositories }) => {
 };
 
 const RepositoryList = () => {
-    const { repositories } = useRepositories();
+    const { repositories, error, loading } = useRepositories();
+    if (loading) {
+        return <View><Text>Loading...</Text></View>
+    }
+    if (error) {
+        console.log(error);
+        return <View><Text>Error...</Text></View>
+    }
     return <RepositoryListContainer repositories={repositories} />;
 };
 

@@ -41,12 +41,10 @@ const SignIn = () => {
   const [signIn] = useSignIn();
   let history = useHistory();
 
-  const onSubmit = async (values) => {
-    const { username, password } = values;
-    console.log('VALUES', values);
-
+  const onSubmit = async (credentials) => { 
+    console.log('CREDENTIALS', credentials); 
     try {
-      const data = await signIn({ username, password });
+      const data = await signIn({ ...credentials });
       console.log('RESPONSE: ', data);
       history.push('/');
     } catch (e) {

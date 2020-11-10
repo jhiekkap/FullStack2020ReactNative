@@ -5,7 +5,6 @@ import SubmitButton from './SubmitButton';
 import RepositoryListItem from './RepositoryList/RepositoryListItem';
 import { useParams } from "react-router-native";
 import useRepository from './../hooks/useRepository';
-import useRepositories from './../hooks/useRepositories';
 import * as Linking from 'expo-linking';
 import theme from '../theme';
 import { format } from 'date-fns';
@@ -13,7 +12,7 @@ import { format } from 'date-fns';
 
 /* const mockItem = {
     id: 'jaredpalmer.formik',
-    fullName: 'jaredpalmer/formik',
+    fullName: ' ',
     description: 'Build forms in React, without the tears',
     language: 'TypeScript',
     forksCount: 1619,
@@ -41,11 +40,11 @@ const RepositoryInfo = ({ item, handleShowGithub }) => {
 const ReviewItem = ({ review }) => {
     return <View style={styles.container}>
         <View style={styles.ratingContainer}>
-            <Text style={styles.rating}>{review.rating}</Text>
+            <Text fontWeight='bold' style={styles.rating}>{review.rating}</Text>
         </View>
         <View style={styles.body}>
             <Text fontWeight='bold'>{review.user.username}</Text>
-            <Text color='textSecondary'>{format(new Date(review.createdAt),'dd.MM.yyyy')}</Text>
+            <Text color='textSecondary'>{format(new Date(review.createdAt), 'dd.MM.yyyy')}</Text>
             <Text style={styles.textContainer}>{review.text}</Text>
         </View>
     </View>
@@ -54,13 +53,7 @@ const ReviewItem = ({ review }) => {
 const RepositoryView = () => {
 
     const { id } = useParams();
-    console.log('IIIDEE', id)
-    const { repository } = useRepository(id);
-    const { repositories } = useRepositories();
-    const repositoryNodes = repositories
-        ? repositories.edges.map((edge) => edge.node)
-        : [];
-    const getRepositoryById = repositoryNodes && repositoryNodes.find(repository => repository.id === id) || null;
+    const { repository, error, loading } = useRepository(id);
     const reviewNodes = repository
         ? repository.reviews.edges.map((edge) => edge.node)
         : [];
@@ -69,13 +62,19 @@ const RepositoryView = () => {
         console.log('SHOW IN GITHUB', id);
         Linking.openURL(repository.url);
     }
+    if (loading) {
+        return <View><Text>Loading...</Text></View>
+    }
+    if (error) {
+        return <View><Text>Error...</Text></View>
+    }
     return (
         <View>
             <FlatList
                 data={reviewNodes}
                 renderItem={({ item }) => <ReviewItem review={item} />}
                 keyExtractor={({ id }) => id}
-                ListHeaderComponent={() => <RepositoryInfo item={getRepositoryById} handleShowGithub={handleShowGithub} />}
+                ListHeaderComponent={() => <RepositoryInfo item={repository} handleShowGithub={handleShowGithub} />}
                 ItemSeparatorComponent={ItemSeparator}
             />
         </View>
@@ -106,9 +105,9 @@ const styles = StyleSheet.create({
         borderColor: theme.colors.primary,
         borderRadius: 20,
         width: 40,
-        height: 40,  
-        textAlign:'center',
-        paddingVertical: 10, 
+        height: 40,
+        textAlign: 'center',
+        paddingVertical: 10,
     },
     body: {
         flexGrow: 4,
