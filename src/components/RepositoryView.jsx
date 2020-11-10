@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import Text from './Text';
+import Loading from './Loading';
 import SubmitButton from './SubmitButton';
 import RepositoryListItem from './RepositoryList/RepositoryListItem';
 import { useParams } from "react-router-native";
@@ -63,7 +64,7 @@ const RepositoryView = () => {
         Linking.openURL(repository.url);
     }
     if (loading) {
-        return <View><Text>Loading...</Text></View>
+        return <Loading />
     }
     if (error) {
         return <View><Text>Error...</Text></View>
