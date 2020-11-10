@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Route, Switch, Redirect } from 'react-router-native';
 import RepositoryList from './RepositoryList';
 import SignIn from './SignIn';
+import SignUp from './SignUp';
 import SignOut from './SignOut';
 import Appbar from './AppBar';
 import RepositoryView from './RepositoryView';
@@ -19,6 +20,9 @@ const Main = () => <View style={styles.container}>
     </Route>
     <Route path="/SignIn" exact>
       <SignIn />
+    </Route>
+    <Route path="/SignUp" exact>
+      <SignUp />
     </Route>
     <Route path="/SignOut" exact>
       <SignOut />

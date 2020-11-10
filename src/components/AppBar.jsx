@@ -41,6 +41,12 @@ const AppBar = () => {
         title: authorizedUser ? 'Sign Out' : 'Sign In',
         to: authorizedUser ? '/SignOut' : '/SignIn'
     });
+    if (!authorizedUser) {
+        tabs.push({
+            title: 'Sign Up',
+            to: '/SignUp'
+        });
+    }
 
 
     return (

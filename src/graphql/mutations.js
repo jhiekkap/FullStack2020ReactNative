@@ -2,12 +2,22 @@ import { gql } from 'apollo-boost';
 
 export const SIGN_IN = gql`
   mutation signIn($username: String!, $password: String!) {
-      authorize(credentials: { username: $username, password: $password }) {
-        accessToken
-      }
+    authorize(credentials: { username: $username, password: $password }) {
+      accessToken
     }
-    `;
+  }
+`;
 
+export const SIGN_UP = gql`
+  mutation signUp($username: String!, $password: String!) {
+    createUser(user: { username: $username, password: $password }) {
+      id
+      username
+    }
+  }
+`;
+
+ 
 export const CREATE_REVIEW = gql`
   mutation createReview($repositoryName: String!, $ownerName: String!, $rating: Int!, $text: String){
     createReview(
@@ -23,18 +33,18 @@ export const CREATE_REVIEW = gql`
   } 
   `;
 
-  /* export const CREATE_REVIEW = gql`
-  mutation {
-    createReview(
-      review: {
-        repositoryName: "onepile"
-        ownerName: "holtwick"
-        rating: 99
-        text: "awesome"
-      }
-    ) {
-      text
+/* export const CREATE_REVIEW = gql`
+mutation {
+  createReview(
+    review: {
+      repositoryName: "onepile"
+      ownerName: "holtwick"
+      rating: 99
+      text: "awesome"
     }
+  ) {
+    text
   }
-  `; */
+}
+`; */
 
