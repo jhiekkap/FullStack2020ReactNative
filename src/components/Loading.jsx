@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 
 const Loading = () => {
     return (
@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     horizontal: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        padding: 10,
-    }, 
+       // flexDirection: 'row',
+        //justifyContent: 'space-around',
+        padding: 100,
+    },
 });

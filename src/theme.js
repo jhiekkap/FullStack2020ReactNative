@@ -12,7 +12,7 @@ const theme = {
     subheading: 16,
   },
   fonts: { 
-    color: Platform.select({
+    main: Platform.select({
       android: 'Roboto',
       ios: 'Arial',
       default: 'System',
