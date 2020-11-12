@@ -8,10 +8,10 @@ import { useParams } from "react-router-native";
 import useRepository from './../hooks/useRepository';
 import * as Linking from 'expo-linking';
 import theme from '../theme';
-import { format } from 'date-fns'; 
+import { format } from 'date-fns';
 
 
-/* const mockItem = {
+/* const mockItem = { 
     id: 'jaredpalmer.formik',
     fullName: ' ',
     description: 'Build forms in React, without the tears',
@@ -54,35 +54,50 @@ const ReviewItem = ({ review }) => {
 const RepositoryView = () => {
 
     const { id } = useParams();
-    const { repository, error, loading } = useRepository(id);
+    const { repository, error, loading, fetchMore } = useRepository({ id, first: 5 });
     const reviewNodes = repository
         ? repository.reviews.edges.map((edge) => edge.node)
         : [];
-    console.log('REVIEWS', reviewNodes)
+    console.log('REVIEWS', reviewNodes.length)
+
     const handleShowGithub = () => {
         console.log('SHOW IN GITHUB', id);
         Linking.openURL(repository.url);
     }
-    if (loading) {
+
+    const onEndReach = () => {
+        console.log('END HAS BEEN REACHED') 
+        fetchMore();
+    };
+
+    /* if (loading) {
         return <Loading />
-    }
+    } */
     if (error) {
         return <View><Text>Error...</Text></View>
     }
     return (
-        <FlatList
-            data={reviewNodes}
-            renderItem={({ item }) => <ReviewItem review={item} />}
-            keyExtractor={({ id }) => id}
-            ListHeaderComponent={() => <RepositoryInfo item={repository} handleShowGithub={handleShowGithub} />}
-            ItemSeparatorComponent={ItemSeparator}
-        />
+        <View style={styles.root}>
+            {!loading && <FlatList
+                data={reviewNodes}
+                renderItem={({ item }) => <ReviewItem review={item} />}
+                keyExtractor={({ id }) => id}
+                ListHeaderComponent={() => <RepositoryInfo item={repository} handleShowGithub={handleShowGithub} />}
+                ItemSeparatorComponent={ItemSeparator}
+                onEndReached={onEndReach}
+                onEndReachedThreshold={0.5}
+            />}
+            {loading && <Loading />}
+        </View>
     );
 }
 
 export default RepositoryView;
 
 const styles = StyleSheet.create({
+    root: {
+        marginBottom: 80,
+    },
     buttonContainer: {
         backgroundColor: 'white',
     },

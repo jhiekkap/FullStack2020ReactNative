@@ -29,17 +29,20 @@ const RepositoryListItemContainer = ({ item }) => {
     );
 }
 
-const RepositoryListContainer = ({ repositories }) => {
+const RepositoryListContainer = ({ repositories, onEndReach, ...props }) => {
 
     const repositoryNodes = repositories
         ? repositories.edges.map((edge) => edge.node)
         : [];
     return (
-        <FlatList
+        <FlatList 
+            {...props}
             data={repositoryNodes}
             ItemSeparatorComponent={ItemSeparator}
             renderItem={({ item }) => <RepositoryListItemContainer item={item} />}
             keyExtractor={item => item.id}
+            onEndReached={onEndReach}
+            onEndReachedThreshold={0.5}
         />
     );
 };
@@ -50,8 +53,7 @@ const RepositoryList = () => {
     const [searchKeyword, setSearchKeyword] = useState('');
     const [searchKeywordDebounced] = useDebounce(searchKeyword, 500);
     const [orderValue, setOrderValue] = useState(null);
-    const { repositories, error, loading } = useRepositories(orderBy, orderDirection, searchKeywordDebounced);
-
+    const { repositories, error, loading, fetchMore } = useRepositories({ orderBy, orderDirection, searchKeyword: searchKeywordDebounced, first: 5 });
 
     const sortOptions = [
         { label: 'Latest repositories', value: 'latest' },
@@ -72,8 +74,11 @@ const RepositoryList = () => {
             setOrderDirection('ASC');
         }
     }
+ 
 
-    console.log('ORDER VALUE', orderValue)
+    const onEndReach = () => {
+        fetchMore();
+    };
 
 
     if (error) {
@@ -81,7 +86,7 @@ const RepositoryList = () => {
         return <View><Text>Error...</Text></View>;
     }
     return (
-        <View>
+        <View style={styles.root}>
             <View style={styles.searchBarContainer}>
                 <Searchbar
                     placeholder="Search"
@@ -96,13 +101,13 @@ const RepositoryList = () => {
                     items={sortOptions}
                     value={orderValue}
                     style={pickerSelectStyles}
-                    placeholder={{/*  label: 'Sort by', value: null */ }}
+                    placeholder={{}}
                     Icon={() => {
                         return <Chevron size={1.5} color="gray" />;
                     }}
                 />
             </View>
-            {!loading && <RepositoryListContainer repositories={repositories} />}
+            <RepositoryListContainer style={{ opacity: loading ? 0.5 : 1 }} repositories={repositories} onEndReach={onEndReach} />
             {loading && <Loading />}
         </View>
     );
@@ -111,6 +116,9 @@ const RepositoryList = () => {
 export default RepositoryList;
 
 const styles = StyleSheet.create({
+    root: {
+        marginBottom: 200,
+    },
     separator: {
         height: 10,
     },
