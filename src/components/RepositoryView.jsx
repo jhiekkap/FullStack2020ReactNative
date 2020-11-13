@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     ratingContainer: {
-        flexGrow: 0.5,
+        flexGrow: 0.5, 
         flexDirection: 'row',
         justifyContent: 'center'
     },
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     },
     body: {
         flexGrow: 4,
-        maxWidth: '85%'
+        maxWidth: '80%'
     },
     textContainer: {
         width: '90%',
