@@ -32,20 +32,30 @@ const AppBar = () => {
             to: '/',
         }];
     if (authorizedUser) {
-        tabs.push({
-            title: 'Create a review',
-            to: '/CreateReview'
-        });
+        tabs.push(
+            {
+                title: 'Create a review',
+                to: '/CreateReview'
+            },
+            {
+                title: 'My reviews',
+                to: '/MyReviewsView'
+            }
+        );
     }
-    tabs.push({
-        title: authorizedUser ? 'Sign Out' : 'Sign In',
-        to: authorizedUser ? '/SignOut' : '/SignIn'
-    });
+    tabs.push(
+        {
+            title: authorizedUser ? 'Sign Out' : 'Sign In',
+            to: authorizedUser ? '/SignOut' : '/SignIn'
+        }
+    );
     if (!authorizedUser) {
-        tabs.push({
-            title: 'Sign Up',
-            to: '/SignUp'
-        });
+        tabs.push(
+            {
+                title: 'Sign Up',
+                to: '/SignUp'
+            }
+        );
     }
 
 
@@ -65,10 +75,10 @@ const styles = StyleSheet.create({
     container: {
         height: 70,
         paddingTop: 35,//Constants.statusBarHeight,
-        backgroundColor: 'black', 
+        backgroundColor: 'black',
     },
     scrollView: {
-        flexDirection: 'row', 
+        flexDirection: 'row',
     },
     tab: {
         color: 'white',

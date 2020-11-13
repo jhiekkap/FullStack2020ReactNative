@@ -8,6 +8,8 @@ import SignOut from './SignOut';
 import Appbar from './AppBar';
 import RepositoryView from './RepositoryView';
 import CreateReview from './CreateReview';
+import MyReviewsView from './MyReviewsView';
+
  
 
 
@@ -29,6 +31,9 @@ const Main = () => <View style={styles.container}>
     </Route>
     <Route path="/CreateReview" exact>
       <CreateReview />
+    </Route>
+    <Route path="/MyReviewsView" exact>
+      <MyReviewsView />
     </Route>
     <Route path="/Repositories/:id" exact>
       <RepositoryView />
