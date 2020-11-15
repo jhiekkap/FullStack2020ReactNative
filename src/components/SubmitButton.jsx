@@ -4,8 +4,8 @@ import Text from './Text';
 import theme from '../theme';
 
 
-const SubmitButton = ({ onSubmit, text, testID }) => <TouchableWithoutFeedback testID={testID} onPress={onSubmit} >
-    <View style={styles.submitButton} >
+const SubmitButton = ({ onSubmit, text, testID, style }) => <TouchableWithoutFeedback testID={testID} onPress={onSubmit} >
+    <View style={{ ...styles.submitButton, ...style }} >
         <Text style={styles.buttonText} fontWeight='bold'>{text}</Text>
     </View>
 </TouchableWithoutFeedback>;

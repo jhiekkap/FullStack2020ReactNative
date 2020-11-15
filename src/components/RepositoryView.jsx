@@ -39,8 +39,8 @@ const RepositoryInfo = ({ item, handleShowGithub }) => {
 
 
 export const ReviewItem = ({ review, myReview }) => {
-    console.log('REVIEW', review)
-    return <View style={styles.container}>
+    //console.log('REVIEW', review)
+    return <View style={styles.reviewContainer}>
         <View style={styles.ratingContainer}>
             <Text fontWeight='bold' style={styles.rating}>{review.rating}</Text>
         </View>
@@ -104,14 +104,19 @@ const styles = StyleSheet.create({
     buttonContainer: {
         backgroundColor: 'white',
     },
-    container: {
+   /*  reviewContainer: {
         backgroundColor: 'white',
+        justifyContent: 'space-between'
+    }, */
+    reviewContainer: {
         flexDirection: 'row',
+        backgroundColor: 'white',
+        justifyContent: 'space-between',
         paddingTop: 10,
         paddingBottom: 10,
     },
     ratingContainer: {
-        flexGrow: 0.5, 
+        flexGrow: 0.5,
         flexDirection: 'row',
         justifyContent: 'center'
     },

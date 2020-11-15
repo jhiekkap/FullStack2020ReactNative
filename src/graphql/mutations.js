@@ -17,7 +17,7 @@ export const SIGN_UP = gql`
   }
 `;
 
- 
+
 export const CREATE_REVIEW = gql`
   mutation createReview($repositoryName: String!, $ownerName: String!, $rating: Int!, $text: String){
     createReview(
@@ -33,18 +33,10 @@ export const CREATE_REVIEW = gql`
   } 
   `;
 
-/* export const CREATE_REVIEW = gql`
-mutation {
-  createReview(
-    review: {
-      repositoryName: "onepile"
-      ownerName: "holtwick"
-      rating: 99
-      text: "awesome"
-    }
-  ) {
-    text
-  }
-}
-`; */
+export const DELETE_REVIEW = gql`
+  mutation DeleteReview($id: ID!){
+      deleteReview(id: $id) 
+  } 
+`;
+
 
