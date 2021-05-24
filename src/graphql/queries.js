@@ -1,5 +1,12 @@
 import { gql } from 'apollo-boost';
 
+// pageInfo {
+//   endCursor
+//   startCursor
+//   totalCount
+//   hasNextPage
+// }
+
 export const GET_REPOSITORIES = gql`
   query GetRepositories($orderBy: AllRepositoriesOrderBy!, $orderDirection: OrderDirection!, $searchKeyword: String, $after: String, $first: Int){
     repositories(orderBy: $orderBy, orderDirection: $orderDirection, searchKeyword: $searchKeyword, after: $after, first: $first) {
@@ -21,14 +28,13 @@ export const GET_REPOSITORIES = gql`
       pageInfo {
         endCursor
         startCursor
-        totalCount
+     
         hasNextPage
       }
     }
   }
 `;
-
-
+ 
 export const AUTHORIZED_USER = gql`
 query getAuthorizedUser($includeReviews: Boolean = false) {
   authorizedUser {
@@ -56,7 +62,7 @@ query getAuthorizedUser($includeReviews: Boolean = false) {
       pageInfo {
         endCursor
         startCursor
-        totalCount
+         
         hasNextPage
       }
     }
@@ -101,7 +107,7 @@ export const GET_REPOSITORY = gql`
         pageInfo {
           endCursor
           startCursor
-          totalCount
+         
           hasNextPage
         }
       }

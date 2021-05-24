@@ -5,8 +5,7 @@ import Loading from './Loading';
 import { ReviewItem } from './RepositoryView';
 import useReviews from './../hooks/useReviews';
 import SubmitButton from './SubmitButton';
-import { useHistory } from 'react-router-native'; 
-
+import { useHistory } from 'react-router-native';
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
@@ -55,8 +54,10 @@ const MyReviewsView = () => {
     console.log('My REVIEWS', reviewNodes.length);
 
     const onEndReach = () => {
-        console.log('END HAS BEEN REACHED') 
+        console.log('END HAS BEEN REACHED')
     };
+    
+    console.log('ERROR', error);
 
     if (error) {
         return <View><Text>Error...</Text></View>;
