@@ -14,8 +14,8 @@ const MyReviewContainer = ({ review, deleteReview, refetch }) => {
 
     const handleDeleteReview = () => {
         Alert.alert(
-            "Alert Title",
-            "My Alert Msg",
+            "Delete review",
+            "Are you sure you want to delete this review?",
             [
                 {
                     text: "Cancel",
