@@ -10,10 +10,6 @@ import RepositoryView from './RepositoryView';
 import CreateReview from './CreateReview';
 import MyReviewsView from './MyReviewsView';
 
- 
-
-
-
 const Main = () => <View style={styles.container}>
   <Appbar />
   <Switch>

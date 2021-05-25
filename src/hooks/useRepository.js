@@ -1,15 +1,12 @@
 import { useQuery } from '@apollo/react-hooks';
 import { GET_REPOSITORY } from '../graphql/queries';
 
-const useRepository = (variables) => {
- 
-    console.log('VARIABLES', variables);
+const useRepository = (variables) => { 
     const { data, error, loading, fetchMore, ...result } = useQuery(GET_REPOSITORY, {
         variables,
         fetchPolicy: 'cache-and-network',
         // Other options
-    });
-    //console.log('DATA', data);
+    }); 
 
     const handleFetchMore = () => {
         const canFetchMore =

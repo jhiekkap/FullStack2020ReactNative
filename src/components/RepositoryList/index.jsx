@@ -11,15 +11,13 @@ import { Chevron } from 'react-native-shapes';
 import theme from '../../theme';
 import { useDebounce } from 'use-debounce';
 
-
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryListItemContainer = ({ item }) => {
 
     let history = useHistory();
 
-    const handleShowRepositoryView = () => {
-        console.log('SHOW REPOSITORY VIEW', item.id);
+    const handleShowRepositoryView = () => { 
         history.push('/Repositories/' + item.id);
     }
     return (
@@ -29,7 +27,7 @@ const RepositoryListItemContainer = ({ item }) => {
     );
 }
 
-const RepositoryListContainer = ({ repositories, onEndReach, ...props }) => {
+export const RepositoryListContainer = ({ repositories, onEndReach, ...props }) => {
 
     const repositoryNodes = repositories
         ? repositories.edges.map((edge) => edge.node)
@@ -75,7 +73,6 @@ const RepositoryList = () => {
         }
     }
  
-
     const onEndReach = () => {
         fetchMore();
     };

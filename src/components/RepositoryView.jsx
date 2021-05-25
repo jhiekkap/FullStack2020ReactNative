@@ -10,7 +10,6 @@ import * as Linking from 'expo-linking';
 import theme from '../theme';
 import { format } from 'date-fns';
 
-
 /* const mockItem = { 
     id: 'jaredpalmer.formik',
     fullName: ' ',
@@ -37,22 +36,18 @@ const RepositoryInfo = ({ item, handleShowGithub }) => {
     );
 };
 
-
-export const ReviewItem = ({ review, myReview }) => {
-    //console.log('REVIEW', review)
-    return <View style={styles.reviewContainer}>
-        <View style={styles.ratingContainer}>
-            <Text fontWeight='bold' style={styles.rating}>{review.rating}</Text>
-        </View>
-        <View style={styles.body}>
-            {myReview
-                ? <Text fontWeight='bold'>{review.repository.fullName}</Text>
-                : <Text fontWeight='bold'>{review.user.username}</Text>}
-            <Text color='textSecondary'>{format(new Date(review.createdAt), 'dd.MM.yyyy')}</Text>
-            <Text style={styles.textContainer}>{review.text}</Text>
-        </View>
+export const ReviewItem = ({ review, myReview }) => <View style={styles.reviewContainer}>
+    <View style={styles.ratingContainer}>
+        <Text fontWeight='bold' style={styles.rating}>{review.rating}</Text>
     </View>
-};
+    <View style={styles.body}>
+        {myReview
+            ? <Text fontWeight='bold'>{review.repository.fullName}</Text>
+            : <Text fontWeight='bold'>{review.user.username}</Text>}
+        <Text color='textSecondary'>{format(new Date(review.createdAt), 'dd.MM.yyyy')}</Text>
+        <Text style={styles.textContainer}>{review.text}</Text>
+    </View>
+</View>;
 
 const RepositoryView = () => {
 
@@ -60,11 +55,8 @@ const RepositoryView = () => {
     const { repository, error, loading, fetchMore } = useRepository({ id, first: 5 });
     const reviewNodes = repository
         ? repository.reviews.edges.map((edge) => edge.node)
-        : [];
-    console.log('REVIEWS', reviewNodes.length)
-
-    const handleShowGithub = () => {
-        console.log('SHOW IN GITHUB', id);
+        : []; 
+    const handleShowGithub = () => { 
         Linking.openURL(repository.url);
     }
 
@@ -104,10 +96,10 @@ const styles = StyleSheet.create({
     buttonContainer: {
         backgroundColor: 'white',
     },
-   /*  reviewContainer: {
-        backgroundColor: 'white',
-        justifyContent: 'space-between'
-    }, */
+     reviewContainer: {
+         backgroundColor: 'white',
+         justifyContent: 'space-between'
+     },
     reviewContainer: {
         flexDirection: 'row',
         backgroundColor: 'white',

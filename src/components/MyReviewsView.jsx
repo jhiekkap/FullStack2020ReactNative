@@ -51,15 +51,13 @@ const MyReviewsView = () => {
     const reviewNodes = reviews
         ? reviews.edges.map((edge) => edge.node)
         : [];
-    console.log('My REVIEWS', reviewNodes.length);
 
     const onEndReach = () => {
         console.log('END HAS BEEN REACHED')
     };
-    
-    console.log('ERROR', error);
 
     if (error) {
+        console.log('ERROR', error);
         return <View><Text>Error...</Text></View>;
     }
     return (

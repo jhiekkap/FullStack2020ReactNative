@@ -2,22 +2,17 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { AUTHORIZED_USER } from '../graphql/queries';
 import { DELETE_REVIEW } from '../graphql/mutations';
 
-const useReviews = (variables) => {
-
-    console.log('USE REVIEW VARIABLES', variables);
+const useReviews = (variables) => { 
     const { data, error, loading, refetch/* fetchMore, ...result */ } = useQuery(AUTHORIZED_USER, {
         variables,
         fetchPolicy: 'cache-and-network',
         // Other options
-    });
-    // console.log('USE REVIEW DATA', data);
+    }); 
     const [mutate/* , result */] = useMutation(DELETE_REVIEW); 
 
-      const deleteReview = async (id) => {
-          console.log('DELETING REVIEW', id)
+      const deleteReview = async (id) => { 
           try {
-              const data = await mutate({ variables: { id } });
-              console.log('REVIEW DELETED RESPONSE', data) 
+              const data = await mutate({ variables: { id } }); 
           } catch (e) {
               console.log('DELETE REVIEW ERROR', e)
           }

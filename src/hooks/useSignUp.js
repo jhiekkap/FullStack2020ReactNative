@@ -7,8 +7,7 @@ const useSignUp = () => {
     const [mutate, result] = useMutation(SIGN_UP);
     const apolloClient = useApolloClient();
 
-    const signUp = async ({ username, password }) => {
-        console.log('CREDENTIALS', username, password);
+    const signUp = async ({ username, password }) => { 
         const { data } = await mutate({ variables: { username, password } });  
         apolloClient.resetStore(); 
         return data;

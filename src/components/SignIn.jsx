@@ -7,7 +7,6 @@ import * as yup from 'yup';
 import useSignIn from './../hooks/useSignIn';
 import { useHistory } from 'react-router-native';
 
-
 const initialValues = {
   username: '',
   password: '',
@@ -35,17 +34,13 @@ export const SignInContainer = ({ onSubmit }) => <Formik
   {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
 </Formik>
 
-
 const SignIn = () => {
-
   const [signIn] = useSignIn();
   let history = useHistory();
 
-  const onSubmit = async (credentials) => { 
-    console.log('CREDENTIALS', credentials); 
+  const onSubmit = async (credentials) => {
     try {
-      const data = await signIn({ ...credentials });
-      console.log('RESPONSE: ', data);
+      const data = await signIn({ ...credentials }); 
       history.push('/');
     } catch (e) {
       console.log(e);

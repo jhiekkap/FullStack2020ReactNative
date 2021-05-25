@@ -50,20 +50,16 @@ const CreateReviewForm = ({ onSubmit }) => {
     );
 }
 
-
 const CreateReview = () => {
 
     const [createReview] = useReview();
     let history = useHistory();
 
     const onSubmit = async (values) => {
-        console.log('SUBMIT REVIEW', { ...values });
         try {
             const data = await createReview({ ...values });
-            console.log('RESPONSE: ', data);
             history.push('/Repositories/' + data.createReview.repositoryId);
         } catch (e) {
-            console.log('CREATE REVIEW ERROR', e.message)
             alert(e.message)
         }
     }

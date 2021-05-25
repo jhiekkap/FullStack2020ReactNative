@@ -51,11 +51,9 @@ const SignUp = () => {
   const [signIn] = useSignIn();
   let history = useHistory();
 
-  const onSubmit = async ({ username, password }) => {
-    console.log('CREDENTIALS', { username, password });
+  const onSubmit = async ({ username, password }) => { 
     try {
-      const data = await signUp({ username, password });
-      console.log('RESPONSE: ', data);
+      const data = await signUp({ username, password }); 
       await signIn({ username, password }); 
       history.push('/'); 
     } catch (e) {

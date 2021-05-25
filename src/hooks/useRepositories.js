@@ -1,9 +1,7 @@
 import { useQuery } from '@apollo/react-hooks';
 import { GET_REPOSITORIES } from '../graphql/queries';
 
-const useRepositories = (variables) => {
-
-    console.log('USE REPOSITORIES VARIABLES', variables)
+const useRepositories = (variables) => { 
     const { data, error, loading, fetchMore, ...result } = useQuery(GET_REPOSITORIES, {
         variables,
         fetchPolicy: 'cache-and-network',
@@ -38,8 +36,7 @@ const useRepositories = (variables) => {
                 return nextResult;
             },
         });
-    };
-    //console.log('DATA', data);  
+    }; 
     const repositories = data && data.repositories || undefined;
     return { repositories, error, loading, fetchMore: handleFetchMore, ...result };
 };
