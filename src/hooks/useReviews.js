@@ -11,7 +11,7 @@ const useReviews = (variables) => {
         // Other options
     });
     // console.log('USE REVIEW DATA', data);
-    const [mutate, result] = useMutation(DELETE_REVIEW); 
+    const [mutate/* , result */] = useMutation(DELETE_REVIEW); 
 
       const deleteReview = async (id) => {
           console.log('DELETING REVIEW', id)

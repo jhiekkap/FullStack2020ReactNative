@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { View, StyleSheet, ScrollView, Text } from 'react-native';
-import Constants from 'expo-constants';
+// import Constants from 'expo-constants';
 import { Link } from "react-router-native";
 import { AUTHORIZED_USER } from '../graphql/queries';
 
